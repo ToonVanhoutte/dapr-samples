@@ -35,7 +35,7 @@ namespace Tvh.Dapr.PubSub.Orders.Controllers
             using (var httpClient = new HttpClient())
             {
                 var result = await httpClient.PostAsync(
-                    "http://localhost:5001/v1.0/publish/ordertopic",
+                    "http://localhost:3500/v1.0/publish/ordertopic",
                     new StringContent(JsonConvert.SerializeObject(order), Encoding.UTF8, "application/json")
                 );
 

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pubsub-app
+  labels:
+    app: pubsub-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pubsub-app
+  template:
+    metadata:
+      labels:
+        app: pubsub-app
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/id: "pubsubapp"
+        dapr.io/port: "80"
+        dapr.io/log-level: "debug"
+    spec:
+      containers:
+      - name: pubsubapp
+        image: tvhdaprregistry.azurecr.io/pubsubapp:0.0.1
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: tvh-dapr-acr-secret

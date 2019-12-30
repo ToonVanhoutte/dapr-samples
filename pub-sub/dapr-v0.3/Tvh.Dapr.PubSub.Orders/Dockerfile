@@ -6,9 +6,9 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0-buster AS build
 WORKDIR /src
-COPY ["Tvh.Dapr.PubSub.Orders/Tvh.Dapr.PubSub.Orders.csproj", "Tvh.Dapr.PubSub.Orders/"]
+COPY ["Tvh.Dapr.PubSub.Orders.csproj", "Tvh.Dapr.PubSub.Orders/"]
 RUN dotnet restore "Tvh.Dapr.PubSub.Orders/Tvh.Dapr.PubSub.Orders.csproj"
-COPY . .
+COPY . "Tvh.Dapr.PubSub.Orders/"
 WORKDIR "/src/Tvh.Dapr.PubSub.Orders"
 RUN dotnet build "Tvh.Dapr.PubSub.Orders.csproj" -c Release -o /app/build
 
